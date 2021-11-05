@@ -12,7 +12,15 @@ function eventListeners(){
     form.addEventListener("submit", addTodo);
     document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
     secondCardBody.addEventListener("click", deleteTodo);
+    filter.addEventListener("keyup", filterTodos);
 }
+
+
+function filterTodos(){
+
+    
+}
+
 
 function deleteTodo(e){
      
