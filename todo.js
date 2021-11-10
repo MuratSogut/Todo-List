@@ -13,12 +13,52 @@ function eventListeners(){
     document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
     secondCardBody.addEventListener("click", deleteTodo);
     filter.addEventListener("keyup", filterTodos);
+    clearButton.addEventListener("click", clearAllTodos);
+}
+
+function clearAllTodos(){
+
+    if (confirm("Tümünü silmek istediğinize emin misiniz ?")){
+
+        todoList.innerHTML = ""; // Yavaş 
+
+        while (todoList.firstElementChild != null){
+
+            todoList.removeChild(todoList.firstElementChild);
+
+        }
+
+        localStorage.removeItem("todos");
+
+    }
+
 }
 
 
-function filterTodos(){
+function filterTodos(e){
 
+    const filterValue = e.target.value.toLowerCase();
+    const listItems = document.querySelectorAll(".list-group-item");
+
+
+    listItems.forEach(function(listItem){
+
+        const text = listItem.textContent.toLowerCase();
+
+        console.log(text.indexOf(filterValue));
+
+        if (text.indexOf(filterValue) === -1) {
+            
+            listItem.setAttribute("style", "display:none!important");
+
+        } else {
+ 
+            listItem.setAttribute("style", "display:block");
     
+        }
+ 
+    })
+       
 }
 
 
